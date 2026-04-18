@@ -6,35 +6,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="bg-canvas"></canvas>
     <nav>
         <div class="logo">LEE<span>(polyu)</span></div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="projects.html">Projects</a>
-            <a href="background.html">Background</a>
-            <a href="contact.html" class="active">Contact</a>
+            <a href="index.html">HOME</a>
+            <a href="projects.html">PROJECTS</a>
+            <a href="background.html">BACKGROUND</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html" class="active">CONTACT</a>
         </div>
     </nav>
-
-    <section class="page-container contact-layout">
-        <div class="contact-header">
-            <h2 class="title-reveal">GET IN TOUCH</h2>
+    <div class="container">
+        <h2 class="section-title">CONNECT</h2>
+        <div class="c-grid">
+            <div class="c-box">
+                <small>GitHub</small>
+                <a href="https://github.com/lihuailin" target="_blank">github.com/lihuailin</a>
+            </div>
+            <div class="c-box">
+                <small>University Email</small>
+                <span>25097331d@connect.polyU.hk</span>
+            </div>
+            <div class="c-box">
+                <small>Personal Email</small>
+                <span>2039167877@qq.com</span>
+            </div>
+            <div class="c-box">
+                <small>Mobile</small>
+                <span>+86 136 1832 2879</span>
+            </div>
         </div>
-        
-        <div class="contact-card-group">
-            <div class="contact-box">
-                <span class="label">GITHUB</span>
-                <span class="value"><a href="https://github.com/lihuailin" target="_blank" style="color:inherit;text-decoration:none;">github.com/lihuailin</a></span>
-            </div>
-            <div class="contact-box">
-                <span class="label">UNIVERSITY EMAIL</span>
-                <span class="value">25097331d@connect.polyU.hk</span>
-            </div>
-            <div class="contact-box">
-                <span class="label">MOBILE PHONE</span>
-                <span class="value">+86 136 1832 2879</span>
-            </div>
-        </div>
-    </section>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>

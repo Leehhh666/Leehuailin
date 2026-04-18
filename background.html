@@ -6,37 +6,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="bg-canvas"></canvas>
     <nav>
         <div class="logo">LEE<span>(polyu)</span></div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="projects.html">Projects</a>
-            <a href="background.html" class="active">Background</a>
-            <a href="contact.html">Contact</a>
+            <a href="index.html">HOME</a>
+            <a href="projects.html">PROJECTS</a>
+            <a href="background.html" class="active">BACKGROUND</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
         </div>
     </nav>
-
-    <section class="page-container">
-        <h2 class="title-reveal">ACADEMIC PATH</h2>
-        <div class="timeline">
-            <div class="t-block">
-                <h4>香港理工大学 (PolyU)</h4>
-                <p>Mechanical Engineering / 2024 - Present</p>
-                <small>核心成员：PolyU Robotic Club</small>
-            </div>
-            <div class="t-block">
-                <h4>南洋理工大学 (NTU)</h4>
-                <p>Exchange Program / 2026 Semester 2</p>
-                <small>专注领域：Advanced Robotics & Control</small>
-            </div>
+    <div class="container">
+        <h2 class="section-title">ACADEMIC JOURNEY</h2>
+        <div class="item-row">
+            <div class="item-tag">2024 - PRESENT</div>
+            <h3>The Hong Kong Polytechnic University</h3>
+            <p>Mechanical Engineering / PolyU Robotic Club 核心开发成员。</p>
         </div>
-
-        <h2 class="title-reveal" style="margin-top: 60px;">SKILL SET</h2>
-        <div class="skill-grid">
-            <div class="s-box">Python / C++</div>
-            <div class="s-box">SolidWorks / MATLAB</div>
-            <div class="s-box">ROS / PID Control</div>
+        <div class="item-row">
+            <div class="item-tag">2026 UPCOMING</div>
+            <h3>Nanyang Technological University</h3>
+            <p>交换生计划 / 专注研究先进机器人学与控制系统。</p>
         </div>
-    </section>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>

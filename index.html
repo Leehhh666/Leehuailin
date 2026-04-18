@@ -2,33 +2,28 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lee (polyu) | Home</title>
+    <title>LEE | Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="bg-canvas"></canvas>
     <nav>
         <div class="logo">LEE<span>(polyu)</span></div>
         <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="projects.html">Projects</a>
-            <a href="background.html">Background</a>
-            <a href="contact.html">Contact</a>
+            <a href="index.html" class="active">HOME</a>
+            <a href="projects.html">PROJECTS</a>
+            <a href="background.html">BACKGROUND</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
         </div>
     </nav>
-
-    <main class="hero">
-        <div class="hero-inner">
-            <h1 class="glitch" data-text="LEE HUAILIN">LEE HUAILIN</h1>
-            <p class="typewriter" id="typewriter"></p>
-            <div class="cta-box">
-                <a href="projects.html" class="btn-main">探索工程项目</a>
-                <a href="https://github.com/Leehhh666" target="_blank" class="btn-sub">GitHub @Leehhh666</a>
-            </div>
+    <div class="container" style="height: 80vh; display: flex; flex-direction: column; justify-content: center;">
+        <h1 style="font-size: 5rem; font-weight: 800; letter-spacing: -3px;">LEE HUAILIN</h1>
+        <p id="typewriter" style="font-size: 1.2rem; font-family: monospace; height: 1.5em;"></p>
+        <div style="margin-top: 40px;">
+            <a href="projects.html" class="btn" style="background: #fff; color: #000;">VIEW PROJECTS</a>
         </div>
-        <div class="scroll-down">Scroll</div>
-    </main>
-
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

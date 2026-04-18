@@ -1,67 +1,45 @@
-/* 3D 展示区增强布局 */
-.model-showcase {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    background: #0f0f0f;
-    padding: 50px;
-    border-radius: 30px;
-    margin-bottom: 80px;
-    border: 1px solid rgba(255,255,255,0.05);
+:root {
+    --bg: #000;
+    --fg: #fff;
+    --acc: #2997ff;
+    --dim: #86868b;
+    --border: rgba(255,255,255,0.1);
 }
 
-.viewer-container {
-    height: 450px;
-    background: #000;
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid rgba(255,255,255,0.1);
-}
+* { margin:0; padding:0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: -apple-system, sans-serif; overflow-x: hidden; line-height: 1.5; }
 
-model-viewer {
-    width: 100%;
-    height: 100%;
-    --poster-color: transparent;
-}
+/* 动态背景 */
+#bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; }
 
-.control-hints {
-    list-style: none;
-    margin-top: 20px;
-    color: var(--gray);
-    font-size: 0.85rem;
-}
+/* 导航栏 */
+nav { display: flex; justify-content: space-between; align-items: center; padding: 40px 8%; position: fixed; top: 0; width: 100%; z-index: 100; backdrop-filter: blur(20px); }
+.logo { font-weight: 800; font-size: 1.2rem; }
+.logo span { color: var(--acc); }
+.nav-links a { color: var(--dim); text-decoration: none; margin-left: 25px; font-size: 0.8rem; font-weight: 600; transition: 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: var(--fg); }
 
-.control-hints li {
-    margin-bottom: 8px;
-    padding-left: 15px;
-    position: relative;
-}
+/* 通用容器 */
+.container { max-width: 1200px; margin: 0 auto; padding: 160px 8% 80px; }
+.section-title { font-size: 0.8rem; letter-spacing: 0.3em; color: var(--dim); margin-bottom: 40px; text-transform: uppercase; }
 
-.control-hints li::before {
-    content: "•";
-    color: var(--accent);
-    position: absolute;
-    left: 0;
-}
+/* 按钮 */
+.btn { border: 1px solid var(--border); color: var(--fg); padding: 12px 30px; border-radius: 50px; text-decoration: none; display: inline-block; transition: 0.3s; font-size: 0.9rem; }
+.btn:hover { border-color: var(--acc); background: rgba(41, 151, 255, 0.1); }
 
-.loading-poster {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    color: var(--gray);
-}
+/* 3D 预览区 */
+.viewer-wrap { height: 450px; background: #080808; border-radius: 24px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 40px; }
+model-viewer { width: 100%; height: 100%; }
 
-.p-tech {
-    margin-top: 20px;
-    font-family: monospace;
-    font-size: 0.8rem;
-    color: var(--accent);
-    opacity: 0.8;
-}
+/* 项目/背景条目 */
+.item-row { border-top: 1px solid var(--border); padding: 40px 0; transition: 0.3s; }
+.item-row:hover { background: rgba(255,255,255,0.02); padding-left: 10px; }
+.item-tag { color: var(--acc); font-size: 0.7rem; font-weight: 700; margin-bottom: 8px; }
+.item-row h3 { font-size: 1.8rem; margin-bottom: 12px; }
+.item-row p { color: var(--dim); max-width: 700px; }
 
-@media (max-width: 900px) {
-    .model-showcase { grid-template-columns: 1fr; }
-    .viewer-container { height: 350px; }
-}
+/* 联系页 */
+.c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.c-box { border-bottom: 1px solid var(--border); padding: 25px 0; }
+.c-box small { display: block; color: var(--dim); font-size: 0.7rem; margin-bottom: 8px; text-transform: uppercase; }
+.c-box span, .c-box a { font-size: 1.3rem; color: var(--acc); text-decoration: none; font-weight: 500; }
