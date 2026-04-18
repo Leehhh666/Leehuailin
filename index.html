@@ -3,229 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEE HUAILIN | Kinematics & Code</title>
-    <style>
-        :root {
-            --bg: #fff;
-            --text: #000;
-            --sub: #888;
-            --accent: #333;
-            --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-            background: var(--bg); color: var(--text); 
-            line-height: 1.4; letter-spacing: -0.01em; 
-            overflow-x: hidden;
-        }
-
-        /* 动态画布容器 */
-        #kinetic-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 60vh;
-            z-index: -1; opacity: 0.1; /* 极淡，高级感 */
-        }
-
-        /* 导航 */
-        nav {
-            position: fixed; top: 0; width: 100%; padding: 40px 8%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 100; mix-blend-mode: difference; /* 文字在不同背景下反色 */
-        }
-        .logo { font-weight: 700; font-size: 1.1rem; }
-        .nav-links { display: flex; gap: 30px; list-style: none; font-size: 0.9rem; }
-        .nav-links a { color: var(--text); text-decoration: none; transition: 0.3s; }
-        .nav-links a:hover { color: var(--sub); }
-
-        /* 内容容器 */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 8%; }
-
-        /* Hero */
-        .hero {
-            height: 90vh; display: flex; flex-direction: column; justify-content: center;
-            position: relative;
-        }
-        .hero h1 { font-size: clamp(3rem, 12vw, 6rem); font-weight: 700; line-height: 1; margin-bottom: 20px; }
-        .hero p { font-size: 1.5rem; color: var(--sub); max-width: 500px; }
-
-        /* 通用滚动出现样式 */
-        .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* 区块 */
-        section { padding: 100px 0; }
-        h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--sub); margin-bottom: 50px; }
-
-        /* 技能/核心能力 */
-        .capabilities { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .cap-item h3 { font-size: 1.2rem; margin-bottom: 10px; font-weight: 600; }
-        .cap-item p { color: var(--sub); font-size: 0.95rem; }
-
-        /* 项目板块 */
-        .project-item { display: flex; align-items: flex-start; margin-bottom: 80px; gap: 40px; }
-        .project-year { font-size: 0.9rem; color: var(--sub); width: 80px; flex-shrink: 0; padding-top: 5px;}
-        .project-info h3 { font-size: 1.8rem; font-weight: 600; margin-bottom: 15px; }
-        .project-info p { color: var(--sub); max-width: 600px; }
-
-        /* 底部 */
-        footer { padding: 80px 0; border-top: 1px solid #eee; text-align: center; color: var(--sub); font-size: 0.9rem; }
-        .footer-links { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
-        .footer-links a { color: var(--accent); text-decoration: none; font-weight: 600; }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 4rem; }
-            .project-item { flex-direction: column; gap: 10px; }
-        }
-    </style>
+    <title>LEE HUAILIN | Robotics & Code</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <canvas id="kinetic-container"></canvas>
-
+    <canvas id="bg-canvas"></canvas>
+    
     <nav>
-        <div class="logo">LH.</div>
-        <ul class="nav-links">
-            <li><a href="#projects">Work</a></li>
-            <li><a href="#exchange">Experience</a></li>
-            <li><a href="#connect">Connect</a></li>
-        </ul>
+        <div class="logo">L.H.</div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="work.html">Work</a>
+            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+        </div>
     </nav>
 
-    <div class="container">
-        <section class="hero">
-            <h1>Engineering.<br>Design.<br>Algorithms.</h1>
-            <p>Lee Huailin，专注于机器人动力学与控制系统开发的工程师。致力于将精确的数学模型转化为可靠的物理运动。</p>
-        </section>
-
-        <section id="projects" class="reveal">
-            <h2>/ Key Works</h2>
-            
-            <div class="project-item">
-                <div class="project-year">Present</div>
-                <div class="project-info">
-                    <h3>PolyU Robocon 2026</h3>
-                    <p>机器人系统架构设计与运动控制。负责多自由度机械臂的运动学建模（IK）、基于 PID 和传感器融合的高精度定位算法开发。</p>
-                </div>
+    <main class="hero">
+        <div class="hero-content">
+            <h1 class="reveal-text">ENGINEERING<br><span class="accent">IN MOTION.</span></h1>
+            <p class="sub-text">我是 Lee Huailin。目前在香港理工大学深造，专注于将复杂的动力学模型转化为高效的机器人控制逻辑。</p>
+            <div class="cta-group">
+                <a href="work.html" class="btn-primary">查看专业项目</a>
+                <a href="mailto:your-email@example.com" class="btn-secondary">联系我</a>
             </div>
+        </div>
+    </main>
 
-            <div class="project-item">
-                <div class="project-year">2024</div>
-                <div class="project-info">
-                    <h3>3D Vector Engine (Python)</h3>
-                    <p>一个专注于空间几何运算的 Python OOP 库。实现了高效的 3D 向量、矩阵变换及方位角计算，用于加速控制算法仿真。</p>
-                </div>
-            </div>
-
-            <div class="project-item">
-                <div class="project-year">2023</div>
-                <div class="project-info">
-                    <h3>Smart Valve Control</h3>
-                    <p>嵌入式智能水阀系统。集成了实时流量监测和基于自定义节水算法的闭环控制硬件，实现工业级自动化管理。</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="exchange" class="reveal">
-            <h2>/ Capabilities</h2>
-            <div class="capabilities">
-                <div class="cap-item">
-                    <h3>Dynamics & Control</h3>
-                    <p>运动学分析、PID 控制、传感器融合、实时系统优化。</p>
-                </div>
-                <div class="cap-item">
-                    <h3>Embedded & Code</h3>
-                    <p>Python (OOP), C++, ROS, Arduino, Matlab/NumPy。</p>
-                </div>
-                <div class="cap-item">
-                    <h3>Future Outlook</h3>
-                    <p>即将前往南洋理工大学 (NTU, 2026) 进行学期交换，探索先进机器人学。</p>
-                </div>
-            </div>
-        </section>
-
-        <footer id="connect" class="reveal">
-            <p>保持严谨，保持创新。</p>
-            <div class="footer-links">
-                <a href="#">GitHub</a>
-                <a href="mailto:your-email@example.com">Email</a>
-                <a href="#">LinkedIn</a>
-            </div>
-            <p style="margin-top: 30px; font-size: 0.8rem; color: #ccc;">&copy; 2026 Lee Huailin. Modern Simplicity.</p>
-        </footer>
-    </div>
-
-    <script>
-        // 1. 滚动出现动画 (Intersection Observer)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-
-        // 2. 动力学头部动画 (Kinetic Banner)
-        const canvas = document.getElementById('kinetic-container');
-        const ctx = canvas.getContext('2d');
-        let width, height, nodes;
-
-        function init() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight * 0.6; // 只覆盖上半部分
-            nodes = Array.from({ length: 30 }, () => ({
-                x: Math.random() * width, y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
-                radius: 1.5
-            }));
-        }
-
-        let mouse = { x: null, y: null };
-        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = '#000';
-            ctx.strokeStyle = '#000';
-            ctx.lineWidth = 0.5;
-
-            nodes.forEach(node => {
-                node.x += node.vx; node.y += node.vy;
-                if (node.x < 0 || node.x > width) node.vx *= -1;
-                if (node.y < 0 || node.y > height) node.vy *= -1;
-
-                // 鼠标交互：轻微排斥
-                if (mouse.x) {
-                    let dx = mouse.x - node.x; let dy = mouse.y - node.y;
-                    let dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < 150) {
-                        node.x -= dx * 0.01; node.y -= dy * 0.01;
-                    }
-                }
-                
-                ctx.beginPath(); ctx.arc(node.x, node.y, node.radius, 0, Math.PI*2); ctx.fill();
-            });
-
-            // 绘制连线
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    let dx = nodes[i].x - nodes[j].x; let dy = nodes[i].y - nodes[j].y;
-                    let dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < 180) {
-                        ctx.globalAlpha = 1 - (dist / 180);
-                        ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
-                    }
-                }
-            }
-            ctx.globalAlpha = 1;
-            requestAnimationFrame(animate);
-        }
-
-        window.addEventListener('resize', init);
-        init(); animate();
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
