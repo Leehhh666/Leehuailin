@@ -1,40 +1,67 @@
-:root {
-    --black: #050505;
-    --white: #ffffff;
-    --gray: #888;
-    --accent: #2997ff;
-    --border: rgba(255,255,255,0.1);
+/* 3D 展示区增强布局 */
+.model-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    background: #0f0f0f;
+    padding: 50px;
+    border-radius: 30px;
+    margin-bottom: 80px;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
-* { margin:0; padding:0; box-sizing: border-box; }
-body { background: var(--black); color: var(--white); font-family: -apple-system, sans-serif; overflow-x: hidden; }
+.viewer-container {
+    height: 450px;
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+}
 
-/* 导航 */
-nav { display: flex; justify-content: space-between; align-items: center; padding: 40px 8%; position: fixed; top: 0; width: 100%; z-index: 100; backdrop-filter: blur(10px); }
-.logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px; }
-.logo span { color: var(--accent); }
-.nav-links a { color: var(--gray); text-decoration: none; margin-left: 30px; font-size: 0.9rem; transition: 0.3s; font-weight: 500; }
-.nav-links a.active, .nav-links a:hover { color: var(--white); }
+model-viewer {
+    width: 100%;
+    height: 100%;
+    --poster-color: transparent;
+}
 
-/* 页面通用布局 */
-.page-container { padding: 180px 8% 100px; max-width: 1400px; margin: 0 auto; }
-.title-reveal { font-size: 1rem; letter-spacing: 0.3em; color: var(--gray); margin-bottom: 60px; text-transform: uppercase; }
+.control-hints {
+    list-style: none;
+    margin-top: 20px;
+    color: var(--gray);
+    font-size: 0.85rem;
+}
 
-/* 首页定制 */
-.hero { height: 100vh; display: flex; align-items: center; padding: 0 8%; background: radial-gradient(circle at 80% 20%, #111 0%, #050505 50%); }
-.hero h1 { font-size: clamp(3rem, 10vw, 6rem); font-weight: 800; letter-spacing: -2px; margin-bottom: 10px; }
-.btn-main { background: var(--white); color: var(--black); padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; margin-right: 20px; display: inline-block; transition: 0.3s; }
-.btn-sub { border: 1px solid var(--border); color: var(--white); padding: 16px 40px; border-radius: 50px; text-decoration: none; display: inline-block; transition: 0.3s; }
-.btn-main:hover { background: var(--accent); color: var(--white); transform: translateY(-3px); }
+.control-hints li {
+    margin-bottom: 8px;
+    padding-left: 15px;
+    position: relative;
+}
 
-/* 项目展示列表 */
-.p-item { border-top: 1px solid var(--border); padding: 60px 0; display: flex; flex-direction: column; transition: 0.3s; }
-.p-item:hover { background: rgba(255,255,255,0.02); padding-left: 20px; }
-.p-tag { color: var(--accent); font-size: 0.7rem; font-weight: 700; margin-bottom: 10px; }
-.p-item h3 { font-size: 2.5rem; margin-bottom: 15px; }
-.p-item p { color: var(--gray); max-width: 700px; line-height: 1.8; }
+.control-hints li::before {
+    content: "•";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+}
 
-/* 联系页排版 */
-.contact-box { border-bottom: 1px solid var(--border); padding: 30px 0; }
-.label { display: block; font-size: 0.7rem; color: var(--gray); letter-spacing: 0.1em; margin-bottom: 10px; }
-.value { font-size: 1.8rem; font-weight: 600; color: var(--accent); }
+.loading-poster {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: var(--gray);
+}
+
+.p-tech {
+    margin-top: 20px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+    .model-showcase { grid-template-columns: 1fr; }
+    .viewer-container { height: 350px; }
+}

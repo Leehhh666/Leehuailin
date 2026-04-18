@@ -2,39 +2,96 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Selected Projects | Lee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Projects | Lee (polyu)</title>
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
 <body>
     <nav>
         <div class="logo">LEE<span>(polyu)</span></div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="projects.html" class="active">Projects</a>
-            <a href="background.html">Background</a>
-            <a href="contact.html">Contact</a>
+            <a href="index.html">首页</a>
+            <a href="projects.html" class="active">项目展示集</a>
+            <a href="background.html">个人背景</a>
+            <a href="contact.html">联系我</a>
         </div>
     </nav>
 
-    <section class="page-container">
-        <h2 class="title-reveal">ENGINEERING WORKS</h2>
+    <div class="page-container">
+        <header class="page-header">
+            <h2 class="title-reveal">ENGINEERING PORTFOLIO</h2>
+            <p class="subtitle">专注于动力学建模、机械设计与算法控制的综合实践。</p>
+        </header>
+
+        <section class="model-showcase">
+            <div class="model-info">
+                <div class="p-tag">INTERACTIVE 3D VIEW</div>
+                <h3>机械结构实验室</h3>
+                <p>
+                    这是我设计的 <strong>robot_arm</strong> 模块。
+                    你可以直接在下方窗口进行交互：
+                </p>
+                <ul class="control-hints">
+                    <li>左键拖动：旋转查看角度</li>
+                    <li>右键拖动：平移视角位置</li>
+                    <li>滚动滚轮：放大/缩小细节</li>
+                </ul>
+            </div>
+            
+            <div class="viewer-container">
+                <model-viewer 
+                    src="models/robot_arm.glb" 
+                    alt="Lee's 3D Mechanical Model"
+                    auto-rotate 
+                    camera-controls 
+                    shadow-intensity="1" 
+                    environment-image="neutral" 
+                    exposure="1"
+                    touch-action="pan-y">
+                    <div slot="poster" class="loading-poster">3D 模型加载中...</div>
+                </model-viewer>
+            </div>
+        </section>
+
         <div class="project-list">
+            
             <div class="p-item">
-                <div class="p-tag">2026 / Robotics</div>
-                <h3>PolyU Robocon: Control System</h3>
-                <p>负责多传感器融合的定位架构，主导机械臂运动学模型建立。实现了极低延迟的 PID 控制闭环，显著提升了机器人的竞技稳定性。</p>
+                <div class="p-header">
+                    <span class="p-tag">ROBOTICS & CONTROL</span>
+                    <span class="p-date">2026 - PRESENT</span>
+                </div>
+                <h3>PolyU Robocon: 运动控制系统架构</h3>
+                <p>在香港理工大学机器人队中担任核心开发成员。主导开发了基于多传感器融合的高精度定位系统，并完成了机械臂逆运动学 (IK) 的算法优化，将系统响应延迟降低至毫秒级。</p>
+                <div class="p-tech">#ROS #PID_Control #Dynamics</div>
             </div>
+
             <div class="p-item">
-                <div class="p-tag">2024 / Embedded</div>
-                <h3>Modular Smart Valve</h3>
-                <p>独立开发的智能硬件项目。集成了高精度流量计与自动化控制逻辑，解决了工业场景下的精准节水需求。</p>
+                <div class="p-header">
+                    <span class="p-tag">EMBEDDED SYSTEMS</span>
+                    <span class="p-date">2024</span>
+                </div>
+                <h3>Modular Smart Valve Control</h3>
+                <p>独立研发的工业级智能节水硬件系统。通过自研闭环控制算法实现了对流体流量的精准调节，并集成了实时数据反馈界面，具备较高的工程实用价值。</p>
+                <div class="p-tech">#Hardware_Design #Embedded_C #Automation</div>
             </div>
+
             <div class="p-item">
-                <div class="p-tag">2024 / Software</div>
-                <h3>Kinematics Engine (Python)</h3>
-                <p>一个纯 Python 实现的 3D 向量与坐标变换库。通过 OOP 架构封装了四元数运算，为机器人仿真提供了高效支持。</p>
+                <div class="p-header">
+                    <span class="p-tag">ALGORITHMS</span>
+                    <span class="p-date">2024</span>
+                </div>
+                <h3>3D Kinematics Vector Engine (Python)</h3>
+                <p>基于面向对象编程 (OOP) 开发的空间运算库。专门处理 3D 向量变换、旋转矩阵及方位角结算，为机器人运动轨迹仿真提供底层算力支持。</p>
+                <div class="p-tech">#Python_OOP #NumPy #Mathematical_Modeling</div>
             </div>
+
         </div>
-    </section>
+
+        <footer class="page-footer">
+            <p>对我的项目感兴趣？</p>
+            <a href="contact.html" class="btn-sub">获取详细联系方式</a>
+        </footer>
+    </div>
 </body>
 </html>
