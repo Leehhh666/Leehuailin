@@ -1,36 +1,40 @@
 :root {
-    --bg: #000;
-    --fg: #fff;
+    --black: #050505;
+    --white: #ffffff;
+    --gray: #888;
     --accent: #2997ff;
-    --dim: #86868b;
-    --border: #333;
+    --border: rgba(255,255,255,0.1);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--bg); color: var(--fg); font-family: -apple-system, sans-serif; }
+* { margin:0; padding:0; box-sizing: border-box; }
+body { background: var(--black); color: var(--white); font-family: -apple-system, sans-serif; overflow-x: hidden; }
 
-nav { display: flex; justify-content: space-between; padding: 40px 10%; position: fixed; top: 0; width: 100%; z-index: 10; background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); }
-.logo { font-weight: 900; font-size: 1.4rem; letter-spacing: -1px; }
-.nav-links a { color: var(--dim); text-decoration: none; margin-left: 30px; font-size: 0.9rem; transition: 0.3s; }
-.nav-links a.active, .nav-links a:hover { color: var(--fg); }
+/* 导航 */
+nav { display: flex; justify-content: space-between; align-items: center; padding: 40px 8%; position: fixed; top: 0; width: 100%; z-index: 100; backdrop-filter: blur(10px); }
+.logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px; }
+.logo span { color: var(--accent); }
+.nav-links a { color: var(--gray); text-decoration: none; margin-left: 30px; font-size: 0.9rem; transition: 0.3s; font-weight: 500; }
+.nav-links a.active, .nav-links a:hover { color: var(--white); }
 
-.hero { height: 100vh; display: flex; align-items: center; padding: 0 10%; position: relative; overflow: hidden; }
-.hero-text { z-index: 2; }
-.hero h1 { font-size: 8vw; line-height: 1; margin-bottom: 20px; font-weight: 800; }
-.btn { background: var(--fg); color: var(--bg); padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; margin-right: 15px; display: inline-block; transition: 0.3s; }
-.btn-outline { border: 1px solid var(--border); color: var(--fg); padding: 12px 30px; border-radius: 50px; text-decoration: none; display: inline-block; transition: 0.3s; }
-.btn:hover, .btn-outline:hover { transform: translateY(-3px); border-color: var(--accent); }
+/* 页面通用布局 */
+.page-container { padding: 180px 8% 100px; max-width: 1400px; margin: 0 auto; }
+.title-reveal { font-size: 1rem; letter-spacing: 0.3em; color: var(--gray); margin-bottom: 60px; text-transform: uppercase; }
 
-.content-section { padding: 150px 10%; }
-.section-title { font-size: 3rem; margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+/* 首页定制 */
+.hero { height: 100vh; display: flex; align-items: center; padding: 0 8%; background: radial-gradient(circle at 80% 20%, #111 0%, #050505 50%); }
+.hero h1 { font-size: clamp(3rem, 10vw, 6rem); font-weight: 800; letter-spacing: -2px; margin-bottom: 10px; }
+.btn-main { background: var(--white); color: var(--black); padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; margin-right: 20px; display: inline-block; transition: 0.3s; }
+.btn-sub { border: 1px solid var(--border); color: var(--white); padding: 16px 40px; border-radius: 50px; text-decoration: none; display: inline-block; transition: 0.3s; }
+.btn-main:hover { background: var(--accent); color: var(--white); transform: translateY(-3px); }
 
-.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-.p-card { border: 1px solid var(--border); padding: 40px; border-radius: 20px; transition: 0.4s; }
-.p-card:hover { border-color: var(--accent); background: #111; }
-.p-num { color: var(--accent); font-family: monospace; display: block; margin-bottom: 20px; }
+/* 项目展示列表 */
+.p-item { border-top: 1px solid var(--border); padding: 60px 0; display: flex; flex-direction: column; transition: 0.3s; }
+.p-item:hover { background: rgba(255,255,255,0.02); padding-left: 20px; }
+.p-tag { color: var(--accent); font-size: 0.7rem; font-weight: 700; margin-bottom: 10px; }
+.p-item h3 { font-size: 2.5rem; margin-bottom: 15px; }
+.p-item p { color: var(--gray); max-width: 700px; line-height: 1.8; }
 
-.contact-info { margin-top: 40px; }
-.info-line { display: flex; border-bottom: 1px solid var(--border); padding: 25px 0; font-size: 1.5rem; }
-.label { color: var(--dim); width: 200px; font-size: 0.8rem; letter-spacing: 2px; }
-
-#canvas-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.3; }
+/* 联系页排版 */
+.contact-box { border-bottom: 1px solid var(--border); padding: 30px 0; }
+.label { display: block; font-size: 0.7rem; color: var(--gray); letter-spacing: 0.1em; margin-bottom: 10px; }
+.value { font-size: 1.8rem; font-weight: 600; color: var(--accent); }

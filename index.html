@@ -2,30 +2,33 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>LEE HUAILIN | 首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lee (polyu) | Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <div class="logo">LH.</div>
+        <div class="logo">LEE<span>(polyu)</span></div>
         <div class="nav-links">
-            <a href="index.html" class="active">首页</a>
-            <a href="projects.html">项目</a>
-            <a href="about.html">背景</a>
-            <a href="contact.html">联系</a>
+            <a href="index.html" class="active">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="background.html">Background</a>
+            <a href="contact.html">Contact</a>
         </div>
     </nav>
+
     <main class="hero">
-        <canvas id="canvas-bg"></canvas>
-        <div class="hero-text">
-            <h1 class="reveal">PRECISION.<br>DYNAMICS.</h1>
-            <p>机械工程学子 / 机器人开发者 / 致力于运动控制算法与结构创新</p>
-            <div class="hero-btns">
-                <a href="projects.html" class="btn">浏览作品</a>
-                <a href="contact.html" class="btn-outline">即刻联络</a>
+        <div class="hero-inner">
+            <h1 class="glitch" data-text="LEE HUAILIN">LEE HUAILIN</h1>
+            <p class="typewriter" id="typewriter"></p>
+            <div class="cta-box">
+                <a href="projects.html" class="btn-main">探索工程项目</a>
+                <a href="https://github.com/Leehhh666" target="_blank" class="btn-sub">GitHub @Leehhh666</a>
             </div>
         </div>
+        <div class="scroll-down">Scroll</div>
     </main>
+
     <script src="main.js"></script>
 </body>
 </html>

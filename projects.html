@@ -2,36 +2,37 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>项目展示 | LEE HUAILIN</title>
+    <title>Selected Projects | Lee</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <div class="logo">LH.</div>
+        <div class="logo">LEE<span>(polyu)</span></div>
         <div class="nav-links">
-            <a href="index.html">首页</a>
-            <a href="projects.html" class="active">项目</a>
-            <a href="about.html">背景</a>
-            <a href="contact.html">联系</a>
+            <a href="index.html">Home</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="background.html">Background</a>
+            <a href="contact.html">Contact</a>
         </div>
     </nav>
-    <section class="content-section">
-        <h2 class="section-title">选定工程项目</h2>
-        <div class="project-grid">
-            <div class="p-card">
-                <span class="p-num">01</span>
-                <h3>Robocon 模块化控制系统</h3>
-                <p>在 PolyU Robotic Club 期间，主导机器人底层运动算法开发，实现多传感器融合的高精度路径规划。</p>
+
+    <section class="page-container">
+        <h2 class="title-reveal">ENGINEERING WORKS</h2>
+        <div class="project-list">
+            <div class="p-item">
+                <div class="p-tag">2026 / Robotics</div>
+                <h3>PolyU Robocon: Control System</h3>
+                <p>负责多传感器融合的定位架构，主导机械臂运动学模型建立。实现了极低延迟的 PID 控制闭环，显著提升了机器人的竞技稳定性。</p>
             </div>
-            <div class="p-card">
-                <span class="p-num">02</span>
-                <h3>智能水阀控制硬件 (Smart Valve)</h3>
-                <p>自主设计并研发的模块化智能阀门，具备实时流量监测与闭环反馈调节功能，专注于工业节能应用。</p>
+            <div class="p-item">
+                <div class="p-tag">2024 / Embedded</div>
+                <h3>Modular Smart Valve</h3>
+                <p>独立开发的智能硬件项目。集成了高精度流量计与自动化控制逻辑，解决了工业场景下的精准节水需求。</p>
             </div>
-            <div class="p-card">
-                <span class="p-num">03</span>
-                <h3>3D 向量运算引擎 (Python)</h3>
-                <p>基于 OOP 开发的高性能空间几何类库，支持矩阵变换与方位角解算，用于辅助机器人运动学仿真。</p>
+            <div class="p-item">
+                <div class="p-tag">2024 / Software</div>
+                <h3>Kinematics Engine (Python)</h3>
+                <p>一个纯 Python 实现的 3D 向量与坐标变换库。通过 OOP 架构封装了四元数运算，为机器人仿真提供了高效支持。</p>
             </div>
         </div>
     </section>
