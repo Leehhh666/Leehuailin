@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lee Huailin | 个人主页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e14;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --primary-cyan: #00f2ff;
+            --accent-orange: #ff8c00;
+            --text-main: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* 粒子背景画布 */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 14, 20, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--primary-cyan); font-weight: bold; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary-cyan); text-shadow: 0 0 10px var(--primary-cyan); }
+
+        /* 首屏展示 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            letter-spacing: 5px;
+            background: linear-gradient(to right, #fff, var(--primary-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .typewriter {
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+            height: 1.6em;
+        }
+
+        /* 通用区块样式 */
+        section { padding: 100px 10%; }
+        h2 { 
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem; 
+            margin-bottom: 3rem; 
+            border-left: 5px solid var(--primary-cyan);
+            padding-left: 1rem;
+        }
+
+        /* 技能网格互动 */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
+            background: rgba(0, 242, 255, 0.05);
+        }
+
+        .skill-card i { font-size: 2.5rem; color: var(--primary-cyan); margin-bottom: 1rem; }
+
+        /* 项目卡片 */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: 0.5s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .project-info { padding: 1.5rem; }
+        .project-info h3 { color: var(--primary-cyan); margin-bottom: 0.5rem; }
+        .project-info p { font-size: 0.9rem; color: #bbb; }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+        }
+
+        /* 底部互动 */
+        footer {
+            padding: 50px 10%;
+            text-align: center;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            color: white;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover { color: var(--primary-cyan); transform: scale(1.2); }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <nav>
+        <div class="logo">LEE HUAILIN</div>
+        <ul class="nav-links">
+            <li><a href="#about">关于</a></li>
+            <li><a href="#skills">技能</a></li>
+            <li><a href="#projects">项目</a></li>
+            <li><a href="#contact">联系</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>LEE HUAILIN</h1>
+        <div class="typewriter" id="typewriter"></div>
+    </section>
+
+    <section id="about">
+        <h2>/ ABOUT ME</h2>
+        <p>目前就读于香港理工大学 (PolyU) 机械工程系，活跃于 PolyU Robotic Club。致力于机器人控制算法与机械结构的完美结合。即将前往新加坡南洋理工大学 (NTU) 探索更广阔的技术领域。</p>
+    </section>
+
+    <section id="skills">
+        <h2>/ SKILLS</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <i class="fab fa-python"></i>
+                <p>Python (OOP)</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-microchip"></i>
+                <p>ROS & PID</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-cube"></i>
+                <p>SolidWorks</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-code-branch"></i>
+                <p>Git / C++</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>/ SELECTED PROJECTS</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Robocon Competition</h3>
+                    <p>负责机器人模块化设计与传感器集成，优化 PID 控制逻辑，实现高精度定位。</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Smart Valve 系统</h3>
+                    <p>自主研发的模块化智能节水阀门，具备实时流量监测与自动化控制功能。</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>3D Vector Engine</h3>
+                    <p>基于 Python 开发的 3D 向量处理库，支持方位角计算及矩阵变换。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #666;">&copy; 2026 LEE HUAILIN. Built with Passion & Code.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // 1. 打字机效果
+        const text = document.getElementById('typewriter');
+        const phrases = ['Robotics Engineer', 'Mechanical Student @ PolyU', 'Python Developer', 'Future NTU Exchanger'];
+        let i = 0, j = 0, currentPhrase = [], isDeleting = false;
+
+        function loop() {
+            text.innerHTML = currentPhrase.join('');
+            if (i < phrases.length) {
+                if (!isDeleting && j <= phrases[i].length) {
+                    currentPhrase.push(phrases[i][j++]);
+                }
+                if (isDeleting && j <= phrases[i].length) {
+                    currentPhrase.pop(phrases[i][j--]);
+                }
+                if (j == phrases[i].length) {
+                    isDeleting = true;
+                }
+                if (isDeleting && j === 0) {
+                    currentPhrase = [];
+                    isDeleting = false;
+                    i++;
+                    if (i == phrases.length) i = 0;
+                }
+            }
+            setTimeout(loop, isDeleting ? 50 : 150);
+        }
+        loop();
+
+        // 2. 粒子背景配置
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80 },
+                color: { value: '#00f2ff' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                line_linked: { enable: true, distance: 150, color: '#00f2ff', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2 }
+            },
+            interactivity: {
+                events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' } }
+            }
+        });
+    </script>
+</body>
+</html>
