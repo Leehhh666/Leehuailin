@@ -3,290 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lee Huailin | 个人主页</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>LEE HUAILIN | Portfolio</title>
     <style>
         :root {
-            --bg-dark: #0a0e14;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --primary-cyan: #00f2ff;
-            --accent-orange: #ff8c00;
-            --text-main: #e0e0e0;
+            --bg: #ffffff;
+            --text: #1d1d1f;
+            --secondary: #86868b;
+            --accent: #0066cc;
+            --card-bg: #f5f5f7;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg: #000000;
+            --text: #f5f5f7;
+            --secondary: #a1a1a6;
+            --accent: #2997ff;
+            --card-bg: #1c1c1e;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            transition: var(--transition);
+            line-height: 1.5;
         }
 
-        /* 粒子背景画布 */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        /* 导航栏 */
+        /* 顶部导航 */
         nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 1.5rem 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(10, 14, 20, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+            position: fixed; top: 0; width: 100%; padding: 30px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; background: rgba(var(--bg), 0.8); backdrop-filter: blur(10px);
         }
+        .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
 
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--primary-cyan); font-weight: bold; }
-        .nav-links { display: flex; list-style: none; }
-        .nav-links li { margin-left: 2rem; }
-        .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary-cyan); text-shadow: 0 0 10px var(--primary-cyan); }
+        /* 内容容器 */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 5%; }
 
-        /* 首屏展示 */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 10%;
+        /* Hero 部分 */
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+        .hero h1 { font-size: clamp(3rem, 10vw, 5rem); font-weight: 700; line-height: 1.1; margin-bottom: 20px; }
+        .hero p { font-size: 1.5rem; color: var(--secondary); max-width: 600px; }
+
+        /* 互动技能标签 */
+        .skills { margin: 40px 0; display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-tag {
+            padding: 8px 20px; border-radius: 20px; background: var(--card-bg);
+            font-size: 0.9rem; cursor: pointer; transition: var(--transition);
+            border: 1px solid transparent;
         }
+        .skill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-        .hero h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            letter-spacing: 5px;
-            background: linear-gradient(to right, #fff, var(--primary-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .typewriter {
-            font-size: 1.5rem;
-            color: var(--accent-orange);
-            height: 1.6em;
-        }
-
-        /* 通用区块样式 */
-        section { padding: 100px 10%; }
-        h2 { 
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem; 
-            margin-bottom: 3rem; 
-            border-left: 5px solid var(--primary-cyan);
-            padding-left: 1rem;
-        }
-
-        /* 技能网格互动 */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            padding: 2rem 1rem;
-            text-align: center;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-cyan);
-            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
-            background: rgba(0, 242, 255, 0.05);
-        }
-
-        .skill-card i { font-size: 2.5rem; color: var(--primary-cyan); margin-bottom: 1rem; }
-
-        /* 项目卡片 */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
+        /* 项目网格 */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 100px 0; }
         .project-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            transition: 0.5s;
-            border: 1px solid rgba(255,255,255,0.1);
+            background: var(--card-bg); padding: 40px; border-radius: 28px;
+            text-decoration: none; color: inherit; transition: var(--transition);
+            display: flex; flex-direction: column; justify-content: space-between;
+            min-height: 300px; opacity: 0; transform: translateY(30px);
+        }
+        .project-card.visible { opacity: 1; transform: translateY(0); }
+        .project-card:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .project-card h3 { font-size: 1.8rem; margin-bottom: 10px; }
+        .project-card p { color: var(--secondary); font-size: 1rem; }
+
+        /* 主题切换按钮 */
+        .theme-toggle {
+            position: fixed; bottom: 30px; left: 30px;
+            width: 50px; height: 50px; border-radius: 25px;
+            background: var(--text); color: var(--bg);
+            border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); z-index: 1000;
         }
 
-        .project-info { padding: 1.5rem; }
-        .project-info h3 { color: var(--primary-cyan); margin-bottom: 0.5rem; }
-        .project-info p { font-size: 0.9rem; color: #bbb; }
-
-        .project-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 40px rgba(0,0,0,0.5);
-        }
-
-        /* 底部互动 */
-        footer {
-            padding: 50px 10%;
-            text-align: center;
-            background: rgba(0,0,0,0.5);
-        }
-
-        .social-icons a {
-            font-size: 1.5rem;
-            color: white;
-            margin: 0 15px;
-            transition: 0.3s;
-        }
-
-        .social-icons a:hover { color: var(--primary-cyan); transform: scale(1.2); }
-
-        /* 响应式调整 */
+        /* 响应式 */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
+            .grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div id="particles-js"></div>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
 
     <nav>
         <div class="logo">LEE HUAILIN</div>
-        <ul class="nav-links">
-            <li><a href="#about">关于</a></li>
-            <li><a href="#skills">技能</a></li>
-            <li><a href="#projects">项目</a></li>
-            <li><a href="#contact">联系</a></li>
-        </ul>
+        <div style="color: var(--secondary); font-size: 0.9rem;">Mechanical Engineering @ PolyU</div>
     </nav>
 
-    <section class="hero">
-        <h1>LEE HUAILIN</h1>
-        <div class="typewriter" id="typewriter"></div>
-    </section>
+    <div class="container">
+        <section class="hero">
+            <h1>Create.<br>Engine.<br>Innovate.</h1>
+            <p>我是 Lee，一名专注于机器人工程与智能制造的开发者。擅长用代码赋予机械生命。</p>
+            <div class="skills">
+                <span class="skill-tag">ROS / PID</span>
+                <span class="skill-tag">Python (OOP)</span>
+                <span class="skill-tag">SolidWorks</span>
+                <span class="skill-tag">C++ / Arduino</span>
+                <span class="skill-tag">NTU Exchange</span>
+            </div>
+        </section>
 
-    <section id="about">
-        <h2>/ ABOUT ME</h2>
-        <p>目前就读于香港理工大学 (PolyU) 机械工程系，活跃于 PolyU Robotic Club。致力于机器人控制算法与机械结构的完美结合。即将前往新加坡南洋理工大学 (NTU) 探索更广阔的技术领域。</p>
-    </section>
-
-    <section id="skills">
-        <h2>/ SKILLS</h2>
-        <div class="skills-container">
-            <div class="skill-card">
-                <i class="fab fa-python"></i>
-                <p>Python (OOP)</p>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-microchip"></i>
-                <p>ROS & PID</p>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-cube"></i>
-                <p>SolidWorks</p>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-code-branch"></i>
-                <p>Git / C++</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>/ SELECTED PROJECTS</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <div class="project-info">
-                    <h3>Robocon Competition</h3>
-                    <p>负责机器人模块化设计与传感器集成，优化 PID 控制逻辑，实现高精度定位。</p>
+        <div class="grid">
+            <a href="#" class="project-card">
+                <div>
+                    <h3>Robocon 2026</h3>
+                    <p>机器人模块化设计与高精度控制算法。专注于传感器融合与实时系统优化。</p>
                 </div>
-            </div>
-            <div class="project-card">
-                <div class="project-info">
-                    <h3>Smart Valve 系统</h3>
-                    <p>自主研发的模块化智能节水阀门，具备实时流量监测与自动化控制功能。</p>
+                <div style="font-weight: 600; color: var(--accent);">Learn More →</div>
+            </a>
+
+            <a href="#" class="project-card">
+                <div>
+                    <h3>Smart Valve</h3>
+                    <p>面向工业自动化的智能流量控制阀门。集成了实时显示与节能算法。</p>
                 </div>
-            </div>
-            <div class="project-card">
-                <div class="project-info">
+                <div style="font-weight: 600; color: var(--accent);">View Details →</div>
+            </a>
+
+            <a href="#" class="project-card">
+                <div>
                     <h3>3D Vector Engine</h3>
-                    <p>基于 Python 开发的 3D 向量处理库，支持方位角计算及矩阵变换。</p>
+                    <p>纯 Python 实现的 3D 向量运算库，支持复杂的空间坐标变换与幅值计算。</p>
                 </div>
-            </div>
-        </div>
-    </section>
+                <div style="font-weight: 600; color: var(--accent);">GitHub Repo →</div>
+            </a>
 
-    <footer id="contact">
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="project-card">
+                <div>
+                    <h3>Feature Article</h3>
+                    <p>关于香港霓虹灯文化与中银大厦建筑美学的深度视觉叙事研究。</p>
+                </div>
+                <div style="font-weight: 600; color: var(--accent);">Read Story →</div>
+            </a>
         </div>
-        <p style="margin-top: 20px; font-size: 0.8rem; color: #666;">&copy; 2026 LEE HUAILIN. Built with Passion & Code.</p>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        <footer style="margin-bottom: 100px; padding-top: 50px; border-top: 1px solid var(--card-bg);">
+            <p style="color: var(--secondary);">&copy; 2026 Lee Huailin. 保持简单，保持严谨。</p>
+        </footer>
+    </div>
+
     <script>
-        // 1. 打字机效果
-        const text = document.getElementById('typewriter');
-        const phrases = ['Robotics Engineer', 'Mechanical Student @ PolyU', 'Python Developer', 'Future NTU Exchanger'];
-        let i = 0, j = 0, currentPhrase = [], isDeleting = false;
-
-        function loop() {
-            text.innerHTML = currentPhrase.join('');
-            if (i < phrases.length) {
-                if (!isDeleting && j <= phrases[i].length) {
-                    currentPhrase.push(phrases[i][j++]);
-                }
-                if (isDeleting && j <= phrases[i].length) {
-                    currentPhrase.pop(phrases[i][j--]);
-                }
-                if (j == phrases[i].length) {
-                    isDeleting = true;
-                }
-                if (isDeleting && j === 0) {
-                    currentPhrase = [];
-                    isDeleting = false;
-                    i++;
-                    if (i == phrases.length) i = 0;
-                }
-            }
-            setTimeout(loop, isDeleting ? 50 : 150);
+        // 1. 主题切换
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', targetTheme);
         }
-        loop();
 
-        // 2. 粒子背景配置
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80 },
-                color: { value: '#00f2ff' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5 },
-                size: { value: 3 },
-                line_linked: { enable: true, distance: 150, color: '#00f2ff', opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 2 }
-            },
-            interactivity: {
-                events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' } }
-            }
+        // 2. 滚动出现动画
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // 3. 简单的鼠标磁吸互动预览（可选，提升高级感）
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            // 可以在这里添加极细微的背景偏移效果
         });
     </script>
 </body>
