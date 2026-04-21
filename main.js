@@ -42,9 +42,10 @@ function setLanguage(lang) {
 
 // 3. 背景动画
 const canvas = document.getElementById('bg-canvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas ? canvas.getContext('2d') : null;
 let dots = [];
 function initBg() {
+    if (!canvas) return;
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
     dots = Array.from({length: 40}, () => ({
         x: Math.random() * canvas.width, y: Math.random() * canvas.height,
@@ -52,6 +53,7 @@ function initBg() {
     }));
 }
 function animate() {
+    if (!ctx || !canvas) return;
     ctx.clearRect(0,0, canvas.width, canvas.height); ctx.strokeStyle = "rgba(41, 151, 255, 0.15)";
     dots.forEach(d => {
         d.x += d.vx; d.y += d.vy;
@@ -84,7 +86,11 @@ function startTypewriter(lang) {
 
 window.onload = () => {
     const savedLang = localStorage.getItem('preferredLang') || 'zh';
-    document.getElementById('lang-select').value = savedLang;
-    initBg(); animate(); setLanguage(savedLang);
+    const langSelect = document.getElementById('lang-select');
+    initBg(); animate();
+    if (langSelect) {
+        langSelect.value = savedLang;
+        setLanguage(savedLang);
+    }
 };
 window.onresize = initBg;
