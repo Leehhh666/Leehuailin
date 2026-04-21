@@ -44,6 +44,9 @@ function setLanguage(lang) {
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas ? canvas.getContext('2d') : null;
 let dots = [];
+function isCanvasVisible() {
+    return !!canvas && getComputedStyle(canvas).display !== 'none';
+}
 function initBg() {
     if (!canvas) return;
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
@@ -87,10 +90,15 @@ function startTypewriter(lang) {
 window.onload = () => {
     const savedLang = localStorage.getItem('preferredLang') || 'zh';
     const langSelect = document.getElementById('lang-select');
-    initBg(); animate();
+    if (isCanvasVisible()) {
+        initBg();
+        animate();
+    }
     if (langSelect) {
         langSelect.value = savedLang;
         setLanguage(savedLang);
     }
 };
-window.onresize = initBg;
+window.onresize = () => {
+    if (isCanvasVisible()) initBg();
+};
