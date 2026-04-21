@@ -40,37 +40,7 @@ function setLanguage(lang) {
     if(document.getElementById('typewriter')) startTypewriter(lang);
 }
 
-// 3. 背景动画
-const canvas = document.getElementById('bg-canvas');
-const ctx = canvas ? canvas.getContext('2d') : null;
-let dots = [];
-function isCanvasVisible() {
-    return !!canvas && getComputedStyle(canvas).display !== 'none';
-}
-function initBg() {
-    if (!canvas) return;
-    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    dots = Array.from({length: 40}, () => ({
-        x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4
-    }));
-}
-function animate() {
-    if (!ctx || !canvas) return;
-    ctx.clearRect(0,0, canvas.width, canvas.height); ctx.strokeStyle = "rgba(41, 151, 255, 0.15)";
-    dots.forEach(d => {
-        d.x += d.vx; d.y += d.vy;
-        if(d.x < 0 || d.x > canvas.width) d.vx *= -1;
-        if(d.y < 0 || d.y > canvas.height) d.vy *= -1;
-        dots.forEach(d2 => {
-            let dist = Math.hypot(d.x - d2.x, d.y - d2.y);
-            if(dist < 180) { ctx.beginPath(); ctx.moveTo(d.x, d.y); ctx.lineTo(d2.x, d2.y); ctx.stroke(); }
-        });
-    });
-    requestAnimationFrame(animate);
-}
-
-// 4. 打字机
+// 3. 打字机
 let typeInterval;
 function startTypewriter(lang) {
     clearInterval(typeInterval);
@@ -90,15 +60,8 @@ function startTypewriter(lang) {
 window.onload = () => {
     const savedLang = localStorage.getItem('preferredLang') || 'zh';
     const langSelect = document.getElementById('lang-select');
-    if (isCanvasVisible()) {
-        initBg();
-        animate();
-    }
     if (langSelect) {
         langSelect.value = savedLang;
         setLanguage(savedLang);
     }
-};
-window.onresize = () => {
-    if (isCanvasVisible()) initBg();
 };
