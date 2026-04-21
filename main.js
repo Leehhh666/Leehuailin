@@ -62,6 +62,6 @@ window.onload = () => {
     const langSelect = document.getElementById('lang-select');
     if (langSelect) {
         langSelect.value = savedLang;
-        setLanguage(savedLang);
     }
+    setLanguage(savedLang);
 };
