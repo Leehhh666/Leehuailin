@@ -1,18 +1,38 @@
 :root {
-    --bg: #000;
-    --fg: #fff;
-    --acc: #2997ff;
-    --dim: #86868b;
-    --border: rgba(255,255,255,0.1);
+    --bg: #0f1115;
+    --fg: #f4f6fb;
+    --acc: #6ea8ff;
+    --dim: #a1a7b3;
+    --border: rgba(255,255,255,0.12);
 }
 
 * { margin:0; padding:0; box-sizing: border-box; }
-body { background: var(--bg); color: var(--fg); font-family: -apple-system, sans-serif; overflow-x: hidden; line-height: 1.5; }
+body {
+    background:
+        radial-gradient(100vw 55vh at 15% 0%, rgba(110,168,255,0.12), transparent 60%),
+        linear-gradient(180deg, #10131a 0%, var(--bg) 45%, #0c0e12 100%);
+    color: var(--fg);
+    font-family: -apple-system, sans-serif;
+    overflow-x: hidden;
+    line-height: 1.5;
+}
 
-#bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; }
+#bg-canvas { display: none; }
 
 /* 导航栏 */
-nav { display: flex; justify-content: space-between; align-items: center; padding: 30px 8%; position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 8%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(14px);
+    background: rgba(15, 17, 21, 0.45);
+    border-bottom: 1px solid var(--border);
+}
 .logo { font-weight: 800; font-size: 1.2rem; }
 .logo span { color: var(--acc); }
 
@@ -33,12 +53,12 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
 .section-title { font-size: 0.8rem; letter-spacing: 0.3em; color: var(--dim); margin-bottom: 40px; text-transform: uppercase; }
 
 /* 3D 预览 */
-.viewer-wrap { height: 450px; background: #080808; border-radius: 24px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 40px; }
+.viewer-wrap { height: 450px; background: rgba(255,255,255,0.03); border-radius: 24px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 40px; }
 model-viewer { width: 100%; height: 100%; }
 
 /* 内容行 */
 .item-row { border-top: 1px solid var(--border); padding: 40px 0; transition: 0.3s; }
-.item-row:hover { background: rgba(255,255,255,0.02); padding-left: 10px; }
+.item-row:hover { background: rgba(255,255,255,0.015); padding-left: 10px; }
 .item-tag { color: var(--acc); font-size: 0.7rem; font-weight: 700; margin-bottom: 8px; }
 .item-row h3 { font-size: 1.8rem; margin-bottom: 12px; }
 .item-row p { color: var(--dim); max-width: 700px; }
