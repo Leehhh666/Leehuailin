@@ -24,7 +24,11 @@ const i18n = {
         "show_less": "收起详情",
         "cta_title": "寻找项目合作或技术交流？",
         "cta_desc": "欢迎联系我，我可以快速参与从方案设计到工程实现的完整流程。",
-        "footer_note": "简洁表达，工程优先。"
+        "footer_note": "简洁表达，工程优先。",
+        "theme_select_aria": "风格选择",
+        "theme_light": "简约白",
+        "theme_dark": "深色科技",
+        "theme_sunset": "暖色活力"
     },
     "zht": {
         "nav_home": "首頁", "nav_projects": "項目展示集", "nav_bg": "個人背景", "nav_about": "關於我", "nav_contact": "聯繫我",
@@ -51,7 +55,11 @@ const i18n = {
         "show_less": "收起詳情",
         "cta_title": "尋找項目合作或技術交流？",
         "cta_desc": "歡迎聯繫我，我可以快速參與從方案設計到工程實現的完整流程。",
-        "footer_note": "簡潔表達，工程優先。"
+        "footer_note": "簡潔表達，工程優先。",
+        "theme_select_aria": "風格選擇",
+        "theme_light": "簡約白",
+        "theme_dark": "深色科技",
+        "theme_sunset": "暖色活力"
     },
     "en": {
         "nav_home": "HOME", "nav_projects": "PROJECTS", "nav_bg": "BACKGROUND", "nav_about": "ABOUT", "nav_contact": "CONTACT",
@@ -78,25 +86,40 @@ const i18n = {
         "show_less": "HIDE DETAILS",
         "cta_title": "Looking for collaboration or technical exchange?",
         "cta_desc": "Feel free to reach out. I can quickly contribute from concept design to engineering implementation.",
-        "footer_note": "Simple expression, engineering first."
+        "footer_note": "Simple expression, engineering first.",
+        "theme_select_aria": "Theme selector",
+        "theme_light": "Minimal Light",
+        "theme_dark": "Tech Dark",
+        "theme_sunset": "Warm Sunset"
     }
 };
 
 window.i18n = i18n;
 
-const themeMap = {
-    light: '简约白',
-    dark: '深色科技',
-    sunset: '暖色活力'
+const themeKeyMap = {
+    light: 'theme_light',
+    dark: 'theme_dark',
+    sunset: 'theme_sunset'
 };
 
 function setTheme(theme) {
-    const themeName = themeMap[theme] ? theme : 'light';
+    const themeName = themeKeyMap[theme] ? theme : 'light';
     document.body.classList.remove('theme-light', 'theme-dark', 'theme-sunset');
     document.body.classList.add(`theme-${themeName}`);
     localStorage.setItem('preferredTheme', themeName);
     const themeSelect = document.getElementById('theme-select');
     if (themeSelect && themeSelect.value !== themeName) themeSelect.value = themeName;
+}
+
+function syncThemeSelectorLanguage(lang) {
+    const themeSelect = document.getElementById('theme-select');
+    if (!themeSelect) return;
+    const dict = i18n[lang] || i18n.zh;
+    themeSelect.setAttribute('aria-label', dict.theme_select_aria || i18n.zh.theme_select_aria);
+    Array.from(themeSelect.options).forEach(option => {
+        const key = themeKeyMap[option.value];
+        option.textContent = (key && dict[key]) || option.value;
+    });
 }
 
 function initThemeSelector() {
@@ -118,11 +141,9 @@ function initThemeSelector() {
         wrapper.className = 'theme-selector';
         themeSelect = document.createElement('select');
         themeSelect.id = 'theme-select';
-        themeSelect.setAttribute('aria-label', '风格选择');
-        Object.entries(themeMap).forEach(([value, label]) => {
+        Object.keys(themeKeyMap).forEach(value => {
             const option = document.createElement('option');
             option.value = value;
-            option.textContent = label;
             themeSelect.appendChild(option);
         });
         wrapper.appendChild(themeSelect);
@@ -133,6 +154,7 @@ function initThemeSelector() {
         themeSelect.addEventListener('change', e => setTheme(e.target.value));
         themeSelect.dataset.themeBound = '1';
     }
+    syncThemeSelectorLanguage(localStorage.getItem('preferredLang') || 'zh');
     setTheme(localStorage.getItem('preferredTheme') || 'light');
 }
 
@@ -144,6 +166,7 @@ function setLanguage(lang) {
     });
     if (document.getElementById('typewriter')) startTypewriter(lang);
     syncDetailButtonLanguage(lang);
+    syncThemeSelectorLanguage(lang);
 }
 
 let typeInterval;
