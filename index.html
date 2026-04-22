@@ -25,13 +25,92 @@
             </div>
         </div>
     </nav>
-    <div class="container" style="height: 70vh; display: flex; flex-direction: column; justify-content: center;">
-        <h1 style="font-size: 5rem; font-weight: 800; letter-spacing: -3px;">LEE HUAILIN</h1>
-        <p id="typewriter" style="font-size: 1.2rem; font-family: monospace; height: 1.5em;"></p>
-        <div style="margin-top: 40px;">
-            <a href="projects.html" class="btn" data-i18n="view_works" style="background:#fff; color:#000; text-decoration:none; padding:12px 30px; border-radius:50px; font-weight:700;">浏览项目</a>
-        </div>
+
+    <main class="container home">
+        <section class="hero reveal">
+            <p class="eyebrow" data-i18n="hero_badge">机器人 · 机械 · 自动化</p>
+            <h1>LEE HUAILIN</h1>
+            <p id="typewriter" class="typewriter"></p>
+            <p class="hero-desc" data-i18n="hero_desc">
+                聚焦机器人控制与工程落地，从机械结构到软件系统，持续打造高可用、可维护、可扩展的自动化方案。
+            </p>
+            <div class="hero-actions">
+                <a href="projects.html" class="btn btn-primary" data-i18n="view_works">浏览项目</a>
+                <a href="contact.html" class="btn btn-ghost" data-i18n="hero_contact">联系我</a>
+            </div>
+        </section>
+
+        <section class="stats reveal">
+            <div class="stat-card">
+                <small data-i18n="stat_1_label">项目经验</small>
+                <strong data-i18n="stat_1_value">10+</strong>
+            </div>
+            <div class="stat-card">
+                <small data-i18n="stat_2_label">机器人方向</small>
+                <strong data-i18n="stat_2_value">3年</strong>
+            </div>
+            <div class="stat-card">
+                <small data-i18n="stat_3_label">跨校协作</small>
+                <strong data-i18n="stat_3_value">PolyU × NTU</strong>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2 class="section-title" data-i18n="home_projects_title">精选项目</h2>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all" data-i18n="filter_all">全部</button>
+                <button class="filter-btn" data-filter="robotics" data-i18n="filter_robotics">机器人</button>
+                <button class="filter-btn" data-filter="embedded" data-i18n="filter_embedded">嵌入式</button>
+                <button class="filter-btn" data-filter="mechatronics" data-i18n="filter_mechatronics">机电系统</button>
+            </div>
+            <div class="project-grid">
+                <article class="project-card" data-category="robotics">
+                    <h3 data-i18n="p1_title">PolyU Robocon 运动控制架构</h3>
+                    <p data-i18n="p1_desc">主导运动控制架构设计。实现多传感器融合定位，提升机械臂响应速度。</p>
+                    <button class="mini-btn detail-toggle" data-i18n="show_more">展开详情</button>
+                    <div class="project-extra" data-i18n="p1_more">负责路径规划联调、运动学参数标定与赛场容错策略设计。</div>
+                </article>
+                <article class="project-card" data-category="embedded">
+                    <h3 data-i18n="p2_title">模块化智能节水阀门</h3>
+                    <p data-i18n="p2_desc">基于嵌入式开发。设计了集流量监测与自动控制于一体的硬件系统。</p>
+                    <button class="mini-btn detail-toggle" data-i18n="show_more">展开详情</button>
+                    <div class="project-extra" data-i18n="p2_more">完成传感器采样、阀门控制策略和低功耗通信逻辑的闭环验证。</div>
+                </article>
+                <article class="project-card" data-category="mechatronics">
+                    <h3 data-i18n="p3_title">机械臂末端执行器快速迭代</h3>
+                    <p data-i18n="p3_desc">通过结构优化与材料替换，降低重量并提升抓取稳定性。</p>
+                    <button class="mini-btn detail-toggle" data-i18n="show_more">展开详情</button>
+                    <div class="project-extra" data-i18n="p3_more">结合仿真和实测数据，缩短原型迭代周期并提升装配效率。</div>
+                </article>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2 class="section-title" data-i18n="skills_title">核心技能</h2>
+            <div class="chips">
+                <span>ROS / C++</span>
+                <span>Python</span>
+                <span>Embedded Systems</span>
+                <span>CAD / SolidWorks</span>
+                <span>Control & Kinematics</span>
+            </div>
+        </section>
+
+        <section class="cta reveal">
+            <h2 data-i18n="cta_title">寻找项目合作或技术交流？</h2>
+            <p data-i18n="cta_desc">欢迎联系我，我可以快速参与从方案设计到工程实现的完整流程。</p>
+            <a href="contact.html" class="btn btn-primary" data-i18n="contact_title">即刻联络</a>
+        </section>
+    </main>
+
+    <div class="floating-top" id="to-top" title="返回顶部">
+        ↑
     </div>
+
+    <div class="container" style="padding-top: 0;">
+        <div class="footer-note" data-i18n="footer_note">简洁表达，工程优先。</div>
+    </div>
+
     <script src="main.js"></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-// 1. 翻译字典
 const i18n = {
     "zh": {
         "nav_home": "首页", "nav_projects": "项目展示集", "nav_bg": "个人背景", "nav_about": "关于我", "nav_contact": "联系我",
@@ -7,7 +6,25 @@ const i18n = {
         "p1_title": "PolyU Robocon 运动控制架构", "p1_desc": "主导运动控制架构设计。实现多传感器融合定位，提升机械臂响应速度。",
         "p2_title": "模块化智能节水阀门", "p2_desc": "基于嵌入式开发。设计了集流量监测与自动控制于一体的硬件系统。",
         "bg_title": "学术历程", "skills_title": "核心技能", "mission_title": "使命",
-        "contact_title": "即刻联络", "msg": "点击开启 3D 实验室"
+        "contact_title": "即刻联络", "msg": "点击开启 3D 实验室",
+        "hero_badge": "机器人 · 机械 · 自动化",
+        "hero_desc": "聚焦机器人控制与工程落地，从机械结构到软件系统，持续打造高可用、可维护、可扩展的自动化方案。",
+        "hero_contact": "联系我",
+        "stat_1_label": "项目经验", "stat_1_value": "10+",
+        "stat_2_label": "机器人方向", "stat_2_value": "3年",
+        "stat_3_label": "跨校协作", "stat_3_value": "PolyU × NTU",
+        "home_projects_title": "精选项目",
+        "filter_all": "全部", "filter_robotics": "机器人", "filter_embedded": "嵌入式", "filter_mechatronics": "机电系统",
+        "p1_more": "负责路径规划联调、运动学参数标定与赛场容错策略设计。",
+        "p2_more": "完成传感器采样、阀门控制策略和低功耗通信逻辑的闭环验证。",
+        "p3_title": "机械臂末端执行器快速迭代",
+        "p3_desc": "通过结构优化与材料替换，降低重量并提升抓取稳定性。",
+        "p3_more": "结合仿真和实测数据，缩短原型迭代周期并提升装配效率。",
+        "show_more": "展开详情",
+        "show_less": "收起详情",
+        "cta_title": "寻找项目合作或技术交流？",
+        "cta_desc": "欢迎联系我，我可以快速参与从方案设计到工程实现的完整流程。",
+        "footer_note": "简洁表达，工程优先。"
     },
     "zht": {
         "nav_home": "首頁", "nav_projects": "項目展示集", "nav_bg": "個人背景", "nav_about": "關於我", "nav_contact": "聯繫我",
@@ -16,7 +33,25 @@ const i18n = {
         "p1_title": "PolyU Robocon 運動控制架構", "p1_desc": "主導運動控制架構設計。實現多傳感器融合定位，提升機械臂響應速度。",
         "p2_title": "模組化智能節水閥門", "p2_desc": "基於嵌入式開發。設計了集流量監測與自動控制於一體的硬件系統。",
         "bg_title": "學術歷程", "skills_title": "核心技能", "mission_title": "使命",
-        "contact_title": "即刻聯絡", "msg": "點擊開啟 3D 實驗室"
+        "contact_title": "即刻聯絡", "msg": "點擊開啟 3D 實驗室",
+        "hero_badge": "機器人 · 機械 · 自動化",
+        "hero_desc": "聚焦機器人控制與工程落地，從機械結構到軟件系統，持續打造高可用、可維護、可擴展的自動化方案。",
+        "hero_contact": "聯繫我",
+        "stat_1_label": "項目經驗", "stat_1_value": "10+",
+        "stat_2_label": "機器人方向", "stat_2_value": "3年",
+        "stat_3_label": "跨校協作", "stat_3_value": "PolyU × NTU",
+        "home_projects_title": "精選項目",
+        "filter_all": "全部", "filter_robotics": "機器人", "filter_embedded": "嵌入式", "filter_mechatronics": "機電系統",
+        "p1_more": "負責路徑規劃聯調、運動學參數標定與賽場容錯策略設計。",
+        "p2_more": "完成傳感器採樣、閥門控制策略和低功耗通信邏輯的閉環驗證。",
+        "p3_title": "機械臂末端執行器快速迭代",
+        "p3_desc": "通過結構優化與材料替換，降低重量並提升抓取穩定性。",
+        "p3_more": "結合仿真和實測數據，縮短原型迭代週期並提升裝配效率。",
+        "show_more": "展開詳情",
+        "show_less": "收起詳情",
+        "cta_title": "尋找項目合作或技術交流？",
+        "cta_desc": "歡迎聯繫我，我可以快速參與從方案設計到工程實現的完整流程。",
+        "footer_note": "簡潔表達，工程優先。"
     },
     "en": {
         "nav_home": "HOME", "nav_projects": "PROJECTS", "nav_bg": "BACKGROUND", "nav_about": "ABOUT", "nav_contact": "CONTACT",
@@ -25,36 +60,122 @@ const i18n = {
         "p1_title": "PolyU Robocon: Control System", "p1_desc": "Led movement control architecture. Achieved multi-sensor fusion positioning and IK optimization.",
         "p2_title": "Modular Smart Valve", "p2_desc": "Embedded hardware design integrating flow monitoring and automated control logic.",
         "bg_title": "ACADEMIC JOURNEY", "skills_title": "CORE SKILLS", "mission_title": "MISSION",
-        "contact_title": "GET IN TOUCH", "msg": "Click to enter 3D Lab"
+        "contact_title": "GET IN TOUCH", "msg": "Click to enter 3D Lab",
+        "hero_badge": "Robotics · Mechanical · Automation",
+        "hero_desc": "Focused on robotics control and practical engineering delivery, from mechanical structure to software systems.",
+        "hero_contact": "CONTACT ME",
+        "stat_1_label": "PROJECTS", "stat_1_value": "10+",
+        "stat_2_label": "ROBOTICS TRACK", "stat_2_value": "3 YEARS",
+        "stat_3_label": "CAMPUS COLLAB", "stat_3_value": "PolyU × NTU",
+        "home_projects_title": "FEATURED PROJECTS",
+        "filter_all": "ALL", "filter_robotics": "ROBOTICS", "filter_embedded": "EMBEDDED", "filter_mechatronics": "MECHATRONICS",
+        "p1_more": "Handled path planning integration, kinematics calibration, and on-field fault-tolerance strategies.",
+        "p2_more": "Built a closed-loop prototype for sensing, valve control strategy, and low-power communication.",
+        "p3_title": "Rapid Iteration of Robot End-Effector",
+        "p3_desc": "Reduced weight and improved grasp stability through structure and material optimization.",
+        "p3_more": "Used simulation plus physical testing to shorten prototype cycles and improve assembly efficiency.",
+        "show_more": "SHOW DETAILS",
+        "show_less": "HIDE DETAILS",
+        "cta_title": "Looking for collaboration or technical exchange?",
+        "cta_desc": "Feel free to reach out. I can quickly contribute from concept design to engineering implementation.",
+        "footer_note": "Simple expression, engineering first."
     }
 };
 
-// 2. 语言切换逻辑
+window.i18n = i18n;
+
 function setLanguage(lang) {
     localStorage.setItem('preferredLang', lang);
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (i18n[lang][key]) el.textContent = i18n[lang][key];
     });
-    // 重启打字机
-    if(document.getElementById('typewriter')) startTypewriter(lang);
+    if (document.getElementById('typewriter')) startTypewriter(lang);
+    syncDetailButtonLanguage(lang);
 }
 
-// 3. 打字机
 let typeInterval;
 function startTypewriter(lang) {
     clearInterval(typeInterval);
     const typeEl = document.getElementById('typewriter');
+    if (!typeEl) return;
     const texts = i18n[lang]["hero_sub"];
     let i = 0, j = 0, deleting = false;
+
     function type() {
         let current = texts[i];
         typeEl.innerHTML = current.substring(0, j) + '_';
-        if(!deleting && j < current.length) j++;
-        else if(deleting && j > 0) j--;
-        else { deleting = !deleting; if(!deleting) i = (i+1)%texts.length; }
+        if (!deleting && j < current.length) j++;
+        else if (deleting && j > 0) j--;
+        else {
+            deleting = !deleting;
+            if (!deleting) i = (i + 1) % texts.length;
+        }
     }
+
     typeInterval = setInterval(type, 150);
+}
+
+function initProjectFilter() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.project-card');
+    if (!filterButtons.length || !cards.length) return;
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            const filter = button.dataset.filter;
+            cards.forEach(card => {
+                const match = filter === 'all' || card.dataset.category === filter;
+                card.style.display = match ? 'block' : 'none';
+            });
+        });
+    });
+}
+
+function syncDetailButtonLanguage(lang) {
+    document.querySelectorAll('.detail-toggle').forEach(btn => {
+        const key = btn.dataset.i18n || 'show_more';
+        if (i18n[lang][key]) btn.textContent = i18n[lang][key];
+    });
+}
+
+function initProjectDetails() {
+    const detailButtons = document.querySelectorAll('.detail-toggle');
+    if (!detailButtons.length) return;
+    detailButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const extra = btn.nextElementSibling;
+            if (!extra) return;
+            extra.classList.toggle('open');
+            btn.dataset.i18n = extra.classList.contains('open') ? 'show_less' : 'show_more';
+            const lang = localStorage.getItem('preferredLang') || 'zh';
+            if (i18n[lang][btn.dataset.i18n]) btn.textContent = i18n[lang][btn.dataset.i18n];
+        });
+    });
+}
+
+function initScrollReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    if (!reveals.length || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+}
+
+function initBackToTop() {
+    const topBtn = document.getElementById('to-top');
+    if (!topBtn) return;
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    window.addEventListener('scroll', () => {
+        topBtn.classList.toggle('show', window.scrollY > 300);
+    });
 }
 
 window.onload = () => {
@@ -64,4 +185,8 @@ window.onload = () => {
         langSelect.value = savedLang;
     }
     setLanguage(savedLang);
+    initProjectFilter();
+    initProjectDetails();
+    initScrollReveal();
+    initBackToTop();
 };
