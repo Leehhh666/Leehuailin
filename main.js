@@ -104,7 +104,7 @@ const themeKeyMap = {
 };
 
 function setTheme(theme) {
-    const themeName = Object.prototype.hasOwnProperty.call(themeKeyMap, theme) ? theme : 'light';
+    const themeName = Object.hasOwn(themeKeyMap, theme) ? theme : 'light';
     document.body.classList.remove('theme-light', 'theme-dark', 'theme-sunset');
     document.body.classList.add(`theme-${themeName}`);
     localStorage.setItem('preferredTheme', themeName);
@@ -153,7 +153,7 @@ function initThemeSelector() {
 
     if (!themeSelect.dataset.themeBound) {
         themeSelect.addEventListener('change', e => setTheme(e.target.value));
-        themeSelect.dataset.themeBound = '1';
+        themeSelect.dataset.themeBound = 'true';
     }
     syncThemeSelectorLanguage(localStorage.getItem('preferredLang') || DEFAULT_LANG);
     setTheme(localStorage.getItem('preferredTheme') || 'light');
