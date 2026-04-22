@@ -156,8 +156,9 @@ function initProjectDetails() {
 }
 
 function initScrollReveal() {
+    if (typeof IntersectionObserver === 'undefined') return;
     const reveals = document.querySelectorAll('.reveal');
-    if (!reveals.length || typeof IntersectionObserver === 'undefined') return;
+    if (!reveals.length) return;
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
