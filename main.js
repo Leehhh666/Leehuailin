@@ -339,6 +339,10 @@ function initHamburger() {
     btn.addEventListener('click', () => {
         const open = links.classList.toggle('open');
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) {
+            const firstLink = links.querySelector('a');
+            if (firstLink) firstLink.focus();
+        }
     });
 
     links.querySelectorAll('a').forEach(a => {
