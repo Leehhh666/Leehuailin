@@ -1,5 +1,5 @@
 :root {
-    --bg: #f7f8fb;
+    --bg: #ffffff;
     --card: #ffffff;
     --fg: #0f172a;
     --muted: #64748b;
@@ -8,9 +8,9 @@
     --primary-soft: #dbeafe;
     --metal: #94a3b8;
     --machine: #0f766e;
-    --nav-bg: rgba(247, 248, 251, 0.85);
-    --body-overlay: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.08), transparent 40%),
-                    radial-gradient(circle at 80% 0, rgba(15, 118, 110, 0.08), transparent 45%);
+    --nav-bg: rgba(255, 255, 255, 0.92);
+    --body-overlay: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.05), transparent 40%),
+                    radial-gradient(circle at 80% 0, rgba(15, 118, 110, 0.05), transparent 45%);
 }
 
 * {
@@ -29,7 +29,7 @@ body {
 }
 
 body.theme-light {
-    --bg: #f7f8fb;
+    --bg: #ffffff;
     --card: #ffffff;
     --fg: #0f172a;
     --muted: #64748b;
@@ -38,9 +38,9 @@ body.theme-light {
     --primary-soft: #dbeafe;
     --metal: #94a3b8;
     --machine: #0f766e;
-    --nav-bg: rgba(247, 248, 251, 0.85);
-    --body-overlay: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.08), transparent 40%),
-                    radial-gradient(circle at 80% 0, rgba(15, 118, 110, 0.08), transparent 45%);
+    --nav-bg: rgba(255, 255, 255, 0.92);
+    --body-overlay: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.05), transparent 40%),
+                    radial-gradient(circle at 80% 0, rgba(15, 118, 110, 0.05), transparent 45%);
 }
 
 body.theme-dark {
@@ -88,7 +88,14 @@ body.contact-page.contact-steel {
 }
 
 #bg-canvas {
-    display: none;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
 }
 
 nav {
@@ -132,11 +139,29 @@ nav {
     font-size: 0.84rem;
     font-weight: 600;
     transition: color 0.2s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 999px;
+    transition: width 0.25s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--fg);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
 }
 
 .lang-selector {
@@ -202,6 +227,8 @@ nav {
     max-width: 1120px;
     margin: 0 auto;
     padding: 120px 8% 72px;
+    position: relative;
+    z-index: 1;
 }
 
 .section-title {
@@ -299,13 +326,13 @@ nav {
     border: 1px solid var(--line);
     border-radius: 14px;
     padding: 18px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .stat-card:hover {
     border-color: var(--primary);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(37, 99, 235, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+    transform: translateY(-4px);
 }
 
 .stat-card small {
@@ -316,7 +343,9 @@ nav {
 }
 
 .stat-card strong {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+    display: inline-block;
 }
 
 .filters {
@@ -356,13 +385,13 @@ nav {
     border: 1px solid var(--line);
     border-radius: 14px;
     padding: 18px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .project-card:hover {
     border-color: var(--primary);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(37, 99, 235, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+    transform: translateY(-4px);
 }
 
 .project-card h3 {
@@ -403,13 +432,31 @@ nav {
     padding: 8px 12px;
     font-size: 0.82rem;
     font-weight: 600;
+    transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+    cursor: default;
+}
+
+.chips span:hover {
+    background: var(--primary-soft);
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
 }
 
 .cta {
-    background: var(--card);
-    border: 1px solid var(--line);
+    background: linear-gradient(var(--card), var(--card)) padding-box,
+                linear-gradient(135deg, var(--primary), var(--machine), var(--primary)) border-box;
+    background-size: auto, 200% auto;
+    border: 2px solid transparent;
     border-radius: 16px;
     padding: 24px;
+    animation: ctaBorder 5s linear infinite;
+}
+
+@keyframes ctaBorder {
+    0%   { background-position: auto, 0% center; }
+    100% { background-position: auto, 200% center; }
 }
 
 .cta h2 {
@@ -438,7 +485,7 @@ nav {
     opacity: 0;
     pointer-events: none;
     transform: translateY(6px);
-    transition: 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     z-index: 999;
 }
 
@@ -446,6 +493,14 @@ nav {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
+}
+
+.floating-top:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
 }
 
 .footer-note {
@@ -716,3 +771,75 @@ model-viewer {
         padding-right: 5%;
     }
 }
+
+/* ── Scroll progress bar ── */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--machine));
+    border-radius: 0 2px 2px 0;
+    z-index: 2000;
+    transition: width 0.08s linear;
+}
+
+/* ── Hero gradient text animation ── */
+.hero h1 {
+    background: linear-gradient(135deg, var(--fg) 30%, var(--primary) 65%, var(--machine) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: gradientText 6s ease-in-out infinite alternate;
+}
+
+@keyframes gradientText {
+    0%   { background-position: 0% center; }
+    100% { background-position: 100% center; }
+}
+
+/* ── Eyebrow badge glow pulse ── */
+.eyebrow {
+    animation: badgePulse 3.5s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.25); }
+    50%       { box-shadow: 0 0 0 7px rgba(37, 99, 235, 0); }
+}
+
+/* ── Staggered entrance for stat cards when parent is visible ── */
+.stats.visible .stat-card {
+    animation: cardSlideIn 0.5s ease both;
+}
+
+.stats.visible .stat-card:nth-child(1) { animation-delay: 0.05s; }
+.stats.visible .stat-card:nth-child(2) { animation-delay: 0.15s; }
+.stats.visible .stat-card:nth-child(3) { animation-delay: 0.25s; }
+
+/* ── Staggered entrance for project cards when parent is visible ── */
+.project-grid.visible .project-card {
+    animation: cardSlideIn 0.5s ease both;
+}
+
+.project-grid.visible .project-card:nth-child(1) { animation-delay: 0.05s; }
+.project-grid.visible .project-card:nth-child(2) { animation-delay: 0.15s; }
+.project-grid.visible .project-card:nth-child(3) { animation-delay: 0.25s; }
+
+@keyframes cardSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Typewriter cursor blink ── */
+.typewriter {
+    border-right: 2px solid var(--primary);
+    animation: cursorBlink 0.9s step-end infinite;
+}
+
+@keyframes cursorBlink {
+    0%, 100% { border-color: var(--primary); }
+    50%       { border-color: transparent; }
+}
+

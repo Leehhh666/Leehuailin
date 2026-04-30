@@ -180,7 +180,7 @@ function startTypewriter(lang) {
 
     function type() {
         let current = texts[i];
-        typeEl.innerHTML = current.substring(0, j) + '_';
+        typeEl.textContent = current.substring(0, j);
         if (!deleting && j < current.length) j++;
         else if (deleting && j > 0) j--;
         else {
@@ -231,6 +231,125 @@ function initProjectDetails() {
     });
 }
 
+function initCanvas() {
+    const canvas = document.getElementById('bg-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
+
+    const DOT_COUNT = 45;
+    const LINE_DIST = 160;
+
+    function primaryRgb() {
+        if (document.body.classList.contains('theme-dark')) return '56,189,248';
+        if (document.body.classList.contains('theme-sunset')) return '234,88,12';
+        return '37,99,235';
+    }
+
+    const dots = Array.from({ length: DOT_COUNT }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 2.2 + 0.8,
+        dx: (Math.random() - 0.5) * 0.35,
+        dy: (Math.random() - 0.5) * 0.35,
+        alpha: Math.random() * 0.22 + 0.06
+    }));
+
+    let rafId;
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+        const rgb = primaryRgb();
+        dots.forEach(d => {
+            ctx.beginPath();
+            ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${rgb},${d.alpha})`;
+            ctx.fill();
+            d.x += d.dx;
+            d.y += d.dy;
+            if (d.x < 0) d.x = W;
+            else if (d.x > W) d.x = 0;
+            if (d.y < 0) d.y = H;
+            else if (d.y > H) d.y = 0;
+        });
+        for (let i = 0; i < dots.length; i++) {
+            for (let j = i + 1; j < dots.length; j++) {
+                const dist = Math.hypot(dots[i].x - dots[j].x, dots[i].y - dots[j].y);
+                if (dist < LINE_DIST) {
+                    ctx.beginPath();
+                    ctx.moveTo(dots[i].x, dots[i].y);
+                    ctx.lineTo(dots[j].x, dots[j].y);
+                    ctx.strokeStyle = `rgba(${rgb},${0.07 * (1 - dist / LINE_DIST)})`;
+                    ctx.lineWidth = 0.6;
+                    ctx.stroke();
+                }
+            }
+        }
+        rafId = requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            cancelAnimationFrame(rafId);
+            W = window.innerWidth;
+            H = window.innerHeight;
+            canvas.width = W;
+            canvas.height = H;
+            draw();
+        }, 150);
+    });
+}
+
+function initScrollProgress() {
+    const bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    document.body.prepend(bar);
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = total > 0 ? `${(scrolled / total) * 100}%` : '0%';
+    }, { passive: true });
+}
+
+function initCountUp() {
+    const statStrongs = document.querySelectorAll('.stat-card strong');
+    if (!statStrongs.length) return;
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const rawText = el.dataset.raw || el.textContent;
+            el.dataset.raw = rawText;
+            const numMatch = rawText.match(/(\d+)/);
+            if (!numMatch) {
+                observer.unobserve(el);
+                return;
+            }
+            const target = parseInt(numMatch[1], 10);
+            const prefix = rawText.slice(0, numMatch.index);
+            const suffix = rawText.slice(numMatch.index + numMatch[0].length);
+            let current = 0;
+            const steps = 30;
+            const interval = 1000 / steps;
+            const inc = Math.ceil(target / steps);
+            const counter = setInterval(() => {
+                current = Math.min(current + inc, target);
+                el.textContent = prefix + current + suffix;
+                if (current >= target) clearInterval(counter);
+            }, interval);
+            observer.unobserve(el);
+        });
+    }, { threshold: 0.5 });
+    statStrongs.forEach(el => observer.observe(el));
+}
+
 function initScrollReveal() {
     if (typeof IntersectionObserver === 'undefined') return;
     const reveals = document.querySelectorAll('.reveal');
@@ -244,6 +363,18 @@ function initScrollReveal() {
         });
     }, { threshold: 0.12 });
     reveals.forEach(el => observer.observe(el));
+
+    // Also observe project-grid and stats for staggered child card animations
+    const grids = document.querySelectorAll('.project-grid, .stats');
+    const gridObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                gridObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    grids.forEach(el => gridObserver.observe(el));
 }
 
 function initBackToTop() {
@@ -361,6 +492,8 @@ function initHamburger() {
 }
 
 window.onload = () => {
+    initCanvas();
+    initScrollProgress();
     initHamburger();
     initThemeSelector();
     const savedLang = localStorage.getItem('preferredLang') || DEFAULT_LANG;
@@ -372,6 +505,7 @@ window.onload = () => {
     initProjectFilter();
     initProjectDetails();
     initScrollReveal();
+    initCountUp();
     initBackToTop();
     initContactInteractions();
 };
